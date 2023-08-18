@@ -25,7 +25,7 @@ const Expenses = (props) => {
         return (
             <ExpenseWrapper className="container space-y-4 my-4 max-w-[700px] bg-slate-900 mx-auto px-4 py-5 rounded-xl ">
                 <ExpenseFilter initialYear={filteredYear} onSelectYear={selectedYearChange} />
-                <Chart />
+                <Chart expenseData={filteredData} />
                 {filteredData.map(e => <ExpenseItem name={e.expenseName} price={e.expensePrice} date={e.expenseDate} key={e.id} />)};
             </ExpenseWrapper>
         );

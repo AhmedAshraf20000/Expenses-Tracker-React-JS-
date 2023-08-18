@@ -5,3 +5,15 @@
 body {
   @apply bg-slate-700;
 }
+.bar{
+  animation: fill-bar 0.3s linear ;
+  -webkit-animation: fill-bar 0.3s linear ;
+}
+@keyframes fill-bar {
+  from {
+    bottom: -100%;
+  }
+  to {
+    bottom: 0;
+  }
+}
