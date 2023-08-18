@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Expenses from './components/Expenses/Expenses';
+import ExpenseForm from './components/NewExpense/ExpenseForm';
 
-function App() {
+const dummyData = [
+  { id: 1, expenseDate: new Date("2020,5,18"), expenseName: "car insurance", expensePrice: 350 },
+  { id: 2, expenseDate: new Date("2022,6,10"), expenseName: "New TV", expensePrice: 200 },
+  { id: 3, expenseDate: new Date("2023,4,5"), expenseName: "toilet paper", expensePrice: 40 },
+  { id: 4, expenseDate: new Date("2023,10,28"), expenseName: "wooden desk", expensePrice: 150 },
+];
+const App = () => {
+  let expensesData = {};
+  const [expensesArr, setExpensesArr] = useState(dummyData);
+
+  const getExpenseDate = (data) => {
+    expensesData =
+    {
+      id: Math.random(),
+      ...data
+    }
+      ;
+    setExpensesArr(
+      prevStat => {
+        return [
+          expensesData,
+          ...prevStat
+        ]
+      }
+    )
+  }
+  // console.log(expensesData);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container mx-auto px-4 md:px-0'>
+      <ExpenseForm onSubmitData={getExpenseDate} />
+      <Expenses expenseData={expensesArr} />
     </div>
   );
 }
